@@ -1,7 +1,14 @@
 import telebot
 from random import *
+import json
+def get_token():
+    token = '7072798631:AAHgPocsl536-VtAb2-LZ-tWqC9zfsYzLNk'
+    with open('token.jsons') as file:
+        json_answer = json.load(file)
+        token = json_answer['config']
+    return token
 
-Token = "7072798631:AAHgPocsl536-VtAb2-LZ-tWqC9zfsYzLNk"
+Token = get_token()
 bot = telebot.TeleBot(Token)
 d = ["+","-","*","/"]
 c = d[randint(0, len(d)-1)]
