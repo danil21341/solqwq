@@ -1,80 +1,62 @@
 
-import random
 import telebot
 from telebot import types
-token = "7080635233:AAGpv_LqUSmzSAvsHaQ3UuGjn4WzvPm7qvo"
-bot = telebot.TeleBot(token)        
-#first = ["привет броу","qwqw"]
-#second = ["пеу","ку"]
-#second_add = ["купу","йкпк"]
-#third = ["куц","йайайай"]
+import json
+def get_token():
+    token = ''
+    with open('token.jsons') as file:
+        json_answer = json.load(file)
+        token = json_answer['config']
+    return token
+
+bot = telebot.TeleBot(get_token())
+first = ["Функция (оператор) print() выводит на экран данные. Внутри круглых скобок записываются выражения, которые нужно вывести на экран."]
+second = ["Если ни одно из условий не истинно, используют else, чтобы выполнить код по умолчанию. В языке Python выражение считается истинным (true), если его результат — не ноль или выражение не является пустым объектом. А ложным (false) оно считается, если результат — ноль или пустой объект, в том числе значение none."]
+second_add = ["Оператор if является началом условной конструкции. Далее идёт условие, которое возвращает логическое значение True (истина) или False (ложь). Завершается условие символом «двоеточие». Затем — обязательный отступ в четыре пробела, он показывает, что строки объединяются в один блок."]
+third = ["Цикл while (“пока”) позволяет выполнить одну и ту же последовательность действий, пока проверяемое условие истинно. Условие записывается до тела цикла и проверяется до выполнения тела цикла. Как правило, цикл while используется, когда невозможно определить точное значение количества проходов исполнения цикла."]
+four = ["В языке Python имеется встроенная функция input(), с помощью которой можно читать ввод пользователя. Эта функция принимает необязательный строковый аргумент (который выводится в консоли как строка приглашения к вводу) и ожидает, пока пользователь введет ответ и завершит ввод клавишей Enter (или Return)."]
+five = ["Ключевое слово def сообщает Python, что вы определяете функцию. После def вы указываете имя функции; оно должно отвечать тем же правилам, что и имена переменных. Согласно конвенции, в имени функции нельзя использовать заглавные буквы, а слова должны быть разделены подчеркиванием вот_так ."]
+six = ["Цикл for является одним из основных инструментов контроля потока выполнения программы в языке Python. Он позволяет итерировать по последовательности элементов, таких как списки, кортежи, строки и другие итерируемые объекты."]
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
     if message.text == "Привет":
-        bot.send_message(message.from_user.id, "Привет, сейчас я расскажу тебе гороскоп на сегодня.")
+        bot.send_message(message.from_user.id, "Привет, сейчас я расскажу тебе о функциях питона")
         keyboard = types.InlineKeyboardMarkup()
-        print_key = types.InlineKeyboardButton(text='print',callback_data='python1' )
+        print_key = types.InlineKeyboardButton(text='print', callback_data='wqr' )
         keyboard.add(print_key)
-        if_key = types.InlineKeyboardButton(text='if', callback_data='python2')
+        if_key = types.InlineKeyboardButton(text='if', callback_data='qwe')
         keyboard.add(if_key)
-        else_key = types.InlineKeyboardButton(text='list', callback_data='python3')
+        else_key = types.InlineKeyboardButton(text='else', callback_data='qwq')
         keyboard.add(else_key)
-        while_key = types.InlineKeyboardButton(text='while', callback_data='python4')
+        while_key = types.InlineKeyboardButton(text='while', callback_data='www')
         keyboard.add(while_key )
-        input_key = types.InlineKeyboardButton(text='input', callback_data='python5')
+        input_key = types.InlineKeyboardButton(text='input', callback_data='qqq')
         keyboard.add(input_key)
-        def_key = types.InlineKeyboardButton(text='def', callback_data='python6')
+        def_key = types.InlineKeyboardButton(text='def', callback_data='eee')
         keyboard.add(def_key)
-        len_key = types.InlineKeyboardButton(text='len', callback_data='python7')
-        keyboard.add(len_key)
-        class_key = types.InlineKeyboardButton(text='class', callback_data='python8')
-        keyboard.add(class_key)
-        import_key = types.InlineKeyboardButton(text='find', callback_data='python9')
-        keyboard.add(import_key)
-        for_key = types.InlineKeyboardButton(text='for', callback_data='python0')
+        for_key = types.InlineKeyboardButton(text='for', callback_data='ewq')
         keyboard.add(for_key)
         bot.send_message(message.from_user.id, text='Выбери о какой команде хочешь узнать ', reply_markup=keyboard)
     elif message.text == "/help":
         bot.send_message(message.from_user.id, "Напиши Привет")
     else:
         bot.send_message(message.from_user.id, "Напиши /help.")
-
-slovar = {
-    'python1': "Команда для печати сообщений на экране или другом стандартном устройстве вывода. Команда print может использоваться для печати любого типа объекта — целого числа, строки, списка, кортежа и других.",
-    'python2': "Команда if оценивает выражение и, если оно истинно (true), выполняет операторы под ним.",
-    'python3': "Функция Python list() принимает любую итерацию (объект, который можно перебирать) в качестве параметра и возвращает список",
-    'python4': "Команда while используется для выполнения набора операторов, если заданное условие истинно",
-    'python5': "Команда для получения ввода от пользователя. Исполнение программы будет остановлено до тех пор, пока пользователь не введет какое-либо значение, которое будет преобразовано функцией input() в строку",
-    'python6': "Команда определения функции Python дает возможность оборачивать повторно используемый код внутри функций, чтобы вызваны его позже, когда это необходимо",
-    'python7': "Команда len или функция len() используются для подсчёта количества элементов в объекте. Если объект является строкой, то функция len() возвращает количество присутствующих в ней символов",
-    'python8': "Команда для создания классов. Python поддерживает объектно-ориентированное программирование и позволяет пользователям создавать классы и инициализировать объекты",
-    'python9': "Команда find() используется для поиска подстроки в строке. Если таковая найдена, find() возвращает индекс первого вхождения подстроки, в противном случае возвращает -1.",
-    'python0': "Команда цикла for используется для выполнения набора операторов путем повторения последовательности. Эта последовательность может быть списком, кортежем, строкой, словарем и т. д."
-}
 @bot.callback_query_handler(func=lambda call: True)
 def callback_worker(call):
-    if call.data == "python1":
-        bot.send_message(call.from_user.id, slovar['python1'])
-    elif call.data == "python2":
-        bot.send_message(call.from_user.id, slovar['python2'])
-    elif call.data == "python3":
-        bot.send_message(call.from_user.id, slovar['python3'])
-    elif call.data == "python4":
-        bot.send_message(call.from_user.id, slovar['python4'])
-    elif call.data == "python5":
-        bot.send_message(call.from_user.id, slovar['python5'])
-    elif call.data == "python6":
-        bot.send_message(call.from_user.id, slovar['python6'])
-    elif call.data == "python7":
-        bot.send_message(call.from_user.id, slovar['python7'])
-    elif call.data == "python8":
-        bot.send_message(call.from_user.id, slovar['python8'])
-    elif call.data == "python9":
-        bot.send_message(call.from_user.id, slovar['python9'])
-    elif call.data == "python0":
-        bot.send_message(call.from_user.id, slovar['python0'])
-        #msg = random.choice(first) + ' ' + random.choice(second) + ' ' + random.choice(second_add) + ' ' + random.choice(third)
-        #bot.send_message(call.message.chat.id, msg)
-
-
+    if call.data == "qwe": 
+        msg = (second_add)
+    if call.data == "qwq": 
+        msg = (second)
+    if call.data == "wqr": 
+        msg = (first)
+    if call.data == "www": 
+        msg = (third)
+    if call.data == "qqq": 
+        msg = (four)
+    if call.data == "eee": 
+        msg = (five)
+    if call.data == "ewq": 
+        msg = (six)
+    
+    bot.send_message(call.message.chat.id, msg)
 bot.polling(none_stop=True, interval=0)
