@@ -8,17 +8,19 @@ bot = telebot.TeleBot(token)
  
 @bot.message_handler(content_types=['text']) 
 def send_start(message): 
-    d = ["+","-","*","/"] 
-    c = d[randint(0, len(d)-1)] 
-    a = randint(1,100) 
-    b = randint(1,100) 
+    print(f'{message.from_user.id}: {message.text}')
     if message.text == 'start':
-        bot.send_message(message.from_user.id, 'Привет, я задам тебе 10 математических вопросов, а в конце скажу на сколько ты ответил правильно, и за какое время! Ты готов(Да/Нет)?') 
-        if message.text == 'Да':
-            for i in range(10):
-                bot.send_message(message.from_user.id, f"{a}{c}{b}") 
-        elif message.text == 'Нет':
-            bot.send_message(message.from_user.id, 'Пока (start - чтобы наччать заново)')
+        bot.send_message(message.from_user.id, 'Привет, я задам тебе 10 математических вопросов, а в конце скажу на сколько ты ответил правильно, и за какое время! Ты готов(Да/Нет)?')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+    elif message.text == 'Да':
+        for i in range(10):
+            d = ["+","-","*","/"] 
+            c = d[randint(0, len(d)-1)] 
+            a = randint(1,100) 
+            b = randint(1,100) 
+            bot.send_message(message.from_user.id, f"{a}{c}{b}")
+ 
+    elif message.text == 'Нет':
+        bot.send_message(message.from_user.id, 'Пока (start - чтобы наччать заново)')
  
  
  
