@@ -3,10 +3,6 @@ import telebot
 from telebot import types 
 token = "7080635233:AAGpv_LqUSmzSAvsHaQ3UuGjn4WzvPm7qvo" 
 bot = telebot.TeleBot(token)         
-#first = ["привет броу","qwqw"] 
-#second = ["пеу","ку"] 
-#second_add = ["купу","йкпк"] 
-#third = ["куц","йайайай"] 
 @bot.message_handler(content_types=['text']) 
 def get_text_messages(message): 
     if message.text == "Привет": 
@@ -59,9 +55,6 @@ def callback_worker(call):
         bot.send_message(call.from_user.id, "Команда find() используется для поиска подстроки в строке. Если таковая найдена,find() возвращает индекс первого вхождения подстроки, в противном случае возвращает -1.") 
     elif call.data == "python0": 
         bot.send_message(call.from_user.id, "Команда цикла for используется для выполнения набора операторов путем повторения последовательности. Эта последовательность может быть списком, кортежем, строкой, словарем и т. д.") 
-        #msg = random.choice(first) + ' ' + random.choice(second) + ' ' + random.choice(second_add) + ' ' + random.choice(third) 
-        #bot.send_message(call.message.chat.id, msg) 
- 
  
 bot.polling(none_stop=True, interval=0)
 
