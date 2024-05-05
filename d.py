@@ -1,8 +1,15 @@
 
 import telebot 
 from telebot import types 
-token = "7080635233:AAGpv_LqUSmzSAvsHaQ3UuGjn4WzvPm7qvo" 
-bot = telebot.TeleBot(token)         
+import json
+
+def get_token():
+    with open('token.json') as file:
+        json_answer = json.load(file)
+        token = json_answer['config']
+    return token
+
+bot = telebot.TeleBot(get_token())         
 @bot.message_handler(content_types=['text']) 
 def get_text_messages(message): 
     if message.text == "Привет": 
