@@ -13,7 +13,7 @@ bot = telebot.TeleBot(get_token())
 @bot.message_handler(content_types=['text']) 
 def get_text_messages(message): 
     if message.text == "Привет": 
-        bot.send_message(message.from_user.id, "Привет, сейчас я расскажу тебе гороскоп на сегодня.") 
+        bot.send_message(message.from_user.id, "Привет, сейчас я расскажу тебе о функциях питона.") 
         keyboard = types.InlineKeyboardMarkup() 
         print_key = types.InlineKeyboardButton(text='print',callback_data='python1' ) 
         keyboard.add(print_key) 
