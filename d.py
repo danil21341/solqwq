@@ -10,10 +10,10 @@ def get_token():
     return token
 
 def get_words():
-    with open('questions.json') as file:
-        data = json.loads(file)         
-        return data['questions']       
-
+    d = []
+    with open('questions.json', encoding='UTF-8') as file:
+        d = json.load(file)
+    return d       
 a = get_words()
 
 bot = telebot.TeleBot(get_token())         
