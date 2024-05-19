@@ -16,13 +16,16 @@ def get_words():
     return d       
 a = get_words()
 
+
 bot = telebot.TeleBot(get_token())         
 @bot.message_handler(content_types=['text']) 
 def get_text_messages(message): 
     if message.text == "Привет": 
         bot.send_message(message.from_user.id, "Привет, сейчас я расскажу тебе о функциях питона!.") 
-        keyboard = types.InlineKeyboardMarkup() 
+        keyboard = types.InlineKeyboardMarkup()
+         
         for i in a.keys():
+            
             keyboard.add(types.InlineKeyboardButton(text=i,callback_data=i) ) 
         
         bot.send_message(message.from_user.id, text='Выбери о какой команде хочешь узнать ', reply_markup=keyboard) 
