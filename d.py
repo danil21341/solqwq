@@ -21,7 +21,7 @@ bot = telebot.TeleBot(get_token())
 @bot.message_handler(content_types=['text']) 
 def get_text_messages(message): 
     if message.text == "Привет": 
-        bot.send_message(message.from_user.id, "Привет, сейчас я расскажу тебе о функциях питона!.") 
+        bot.send_message(message.from_user.id, "Привет, сейчас я тебе помогу узнать больше о программировании.") 
         keyboard = types.InlineKeyboardMarkup()
          
         for i in a.keys():
